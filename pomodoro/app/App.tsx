@@ -21,9 +21,16 @@ export default function App() {
       <h1>Pomodoro Timer</h1>
       <div className="timer-display">{formatTime(timeLeft)}</div>
       <div className="controls">
-        <button onClick={() => setIsRunning(true)}>Start</button>
-        <button onClick={() => setIsRunning(false)}>Stop</button>
+        {!isRunning && timeLeft > 0 && (
+          <button onClick={() => setIsRunning(true)}>Start</button>
+        )}
+        {isRunning && <button onClick={() => setIsRunning(false)}>Pause</button>}
+        {!isRunning && timeLeft === 0 && (
+          <button onClick={() => setTimeLeft(25 * 60)}>Reset</button>
+        )}
       </div>
     </div>
+
+
   );
 }
